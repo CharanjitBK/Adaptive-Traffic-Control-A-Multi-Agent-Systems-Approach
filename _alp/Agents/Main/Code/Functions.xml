@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Functions>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>boolean</ReturnType>
+		<Id>1762971356643</Id>
+		<Name><![CDATA[checkDemandSwitch_NS]]></Name>
+		<X>140</X>
+		<Y>2550</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Parameter>
+			<Name><![CDATA[current_queue]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[opposing_queue1]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[opposing_queue2]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>boolean</ReturnType>
+		<Id>1763026342087</Id>
+		<Name><![CDATA[checkDemandSwitch_EW]]></Name>
+		<X>140</X>
+		<Y>2830</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Parameter>
+			<Name><![CDATA[current_queue]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[opposing_queue1]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[opposing_queue2]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>boolean</ReturnType>
+		<Id>1766327351306</Id>
+		<Name><![CDATA[checkDemandSwitch]]></Name>
+		<X>140</X>
+		<Y>2890</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Parameter>
+			<Name><![CDATA[q1]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[q2]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Parameter>
+			<Name><![CDATA[q3]]></Name>
+			<Type><![CDATA[StopLine]]></Type>
+		</Parameter>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>double</ReturnType>
+		<Id>1766605382016</Id>
+		<Name><![CDATA[getAvgDelayFixed]]></Name>
+		<X>680</X>
+		<Y>2380</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>double</ReturnType>
+		<Id>1766605411613</Id>
+		<Name><![CDATA[getAvgDelayAdaptive]]></Name>
+		<X>680</X>
+		<Y>2410</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+	<Function AccessType="default" StaticFunction="false">
+		<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+		<ReturnType>double</ReturnType>
+		<Id>1766605698893</Id>
+		<Name><![CDATA[getThroughput]]></Name>
+		<X>690</X>
+		<Y>2440</Y>
+		<Label>
+			<X>10</X>
+			<Y>0</Y>
+		</Label>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Body xmlns:al="http://anylogic.com"/>
+	</Function>
+</Functions>

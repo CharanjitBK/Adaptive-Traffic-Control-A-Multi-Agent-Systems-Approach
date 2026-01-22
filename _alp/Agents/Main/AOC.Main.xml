@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActiveObjectClass>
+	<Id>1761763353374</Id>
+	<Name><![CDATA[Main]]></Name>
+	<Generic>false</Generic>
+	<GenericParameter>
+		<Id>1761763353379</Id>
+		<Name><![CDATA[1761763353379]]></Name>
+		<GenericParameterValue Class="CodeValue">
+			<Code><![CDATA[T extends Agent]]></Code>
+		</GenericParameterValue>
+		<GenericParameterLabel>Generic parameter:</GenericParameterLabel>
+	</GenericParameter>
+	<FlowChartsUsage>ENTITY</FlowChartsUsage>
+	<SamplesToKeep>100</SamplesToKeep>
+	<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
+	<ElementsLimitValue>100</ElementsLimitValue>
+	<MakeDefaultViewArea>true</MakeDefaultViewArea>
+	<SceneGridColor/>
+	<SceneBackgroundColor>-4144960</SceneBackgroundColor>
+	<SceneSkybox>null</SceneSkybox>
+	<AgentProperties>
+		<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+		<RotateAnimationTowardsMovement>true</RotateAnimationTowardsMovement>
+		<RotateAnimationVertically>false</RotateAnimationVertically>
+		<VelocityCode Class="CodeUnitValue">
+			<Code><![CDATA[10]]></Code>
+			<Unit Class="SpeedUnits">MPS</Unit>
+		</VelocityCode>
+		<BeforeStepCode>int currentQueue = stopLine.queueSize() + stopLine1.queueSize() + stopLine2.queueSize();
+
+if (isAdaptive) {
+    if (currentQueue &gt; maxQueueAdaptive) maxQueueAdaptive = currentQueue;
+} else {
+    if (currentQueue &gt; maxQueueFixed) maxQueueFixed = currentQueue;
+}</BeforeStepCode>
+		<PhysicalLength Class="CodeUnitValue">
+			<Code><![CDATA[1]]></Code>
+			<Unit Class="LengthUnits">METER</Unit>
+		</PhysicalLength>
+		<PhysicalWidth Class="CodeUnitValue">
+			<Code><![CDATA[1]]></Code>
+			<Unit Class="LengthUnits">METER</Unit>
+		</PhysicalWidth>
+		<PhysicalHeight Class="CodeUnitValue">
+			<Code><![CDATA[1]]></Code>
+			<Unit Class="LengthUnits">METER</Unit>
+		</PhysicalHeight>
+	</AgentProperties>
+	<EnvironmentProperties>
+		<EnableSteps>false</EnableSteps>
+		<StepDurationCode Class="CodeUnitValue">
+			<Code><![CDATA[1.0]]></Code>
+			<Unit Class="TimeUnits">SECOND</Unit>
+		</StepDurationCode>
+		<SpaceType>CONTINUOUS</SpaceType>
+		<WidthCode>500</WidthCode>
+		<HeightCode>500</HeightCode>
+		<ZHeightCode>0</ZHeightCode>
+		<ColumnsCountCode>100</ColumnsCountCode>
+		<RowsCountCode>100</RowsCountCode>
+		<NeigborhoodType>MOORE</NeigborhoodType>
+		<LayoutType>USER_DEF</LayoutType>
+		<NetworkType>USER_DEF</NetworkType>
+		<ConnectionsPerAgentCode>2</ConnectionsPerAgentCode>
+		<ConnectionsRangeCode>50</ConnectionsRangeCode>
+		<NeighborLinkFractionCode>0.95</NeighborLinkFractionCode>
+		<MCode>10</MCode>
+	</EnvironmentProperties>
+	<DatasetsCreationProperties>
+		<AutoCreate>true</AutoCreate>
+		<Id>1761763353373</Id>
+		<OccurrenceAtTime>true</OccurrenceAtTime>
+		<OccurrenceDate>1761811200000</OccurrenceDate>
+		<OccurrenceTime Class="CodeUnitValue">
+			<Code><![CDATA[0]]></Code>
+			<Unit Class="TimeUnits">SECOND</Unit>
+		</OccurrenceTime>
+		<RecurrenceCode Class="CodeUnitValue">
+			<Code><![CDATA[1]]></Code>
+			<Unit Class="TimeUnits">SECOND</Unit>
+		</RecurrenceCode>
+	</DatasetsCreationProperties>
+	<ScaleRuler>
+		<Id>1761763353377</Id>
+		<Name><![CDATA[scale]]></Name>
+		<X>0</X>
+		<Y>-150</Y>
+		<PublicFlag>false</PublicFlag>
+		<PresentationFlag>false</PresentationFlag>
+		<ShowLabel>false</ShowLabel>
+		<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+		<Length>100</Length>
+		<Rotation>0</Rotation>
+		<ScaleType>BASED_ON_LENGTH</ScaleType>
+		<ModelLength>25</ModelLength>
+		<LengthUnits>METER</LengthUnits>
+		<Scale>10</Scale>
+		<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
+	</ScaleRuler>
+	<CurrentLevel>1761763353380</CurrentLevel>
+	<ConnectionsId>1761763353375</ConnectionsId>
+	<TrafficLight>
+		<Id>1762330026489</Id>
+		<Name><![CDATA[trafficLight]]></Name>
+		<X>710</X>
+		<Y>1390</Y>
+		<Label>
+			<X>0</X>
+			<Y>-20</Y>
+		</Label>
+		<PublicFlag>true</PublicFlag>
+		<PresentationFlag>true</PresentationFlag>
+		<ShowLabel>true</ShowLabel>
+		<Type><![CDATA[JUNCTION_STOP_LINES]]></Type>
+		<Duration Class="CodeValue">
+			<Code><![CDATA[0]]></Code>
+		</Duration>
+		<DefaultState>RED</DefaultState>
+	</TrafficLight>
+	<Variables xmlns:al="http://anylogic.com"/>
+	<StatechartElements>
+		<StatechartElement Class="State" ParentState="ROOT_NODE">
+			<Id>1762940284410</Id>
+			<Name><![CDATA[NS_Green]]></Name>
+			<X>1010</X>
+			<Y>1560</Y>
+			<Label>
+				<X>15</X>
+				<Y>10</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<Properties Width="90" Height="30">
+				<EntryAction>// Reset the phase timer for the transition condition
+lastPhaseChangeTime = time();
+
+if (isAdaptive) {
+    // qN: North, qS: South (stopLine2), qE: East (stopLine1)
+    int qN = (stopLine != null) ? stopLine.queueSize() : 0;
+    int qS = (stopLine2 != null) ? stopLine2.queueSize() : 0;
+    int qE = (stopLine1 != null) ? stopLine1.queueSize() : 0;
+
+    smoothedNS = ALPHA * (qN + qS) + (1 - ALPHA) * smoothedNS;
+    smoothedEW = ALPHA * qE + (1 - ALPHA) * smoothedEW;
+
+    double total = smoothedNS + smoothedEW;
+    // Duration based on NS queue ratio
+    double gNS = (total &gt; 0) ? (smoothedNS / total) * (MIN_GREEN + MAX_GREEN) / 2 : MIN_GREEN;
+    
+    currentGreenDuration = Math.max(MIN_GREEN, Math.min(MAX_GREEN, gNS));
+    traceln("NS_Green (Adaptive): " + currentGreenDuration);
+} else {
+    currentGreenDuration = 30.0;
+    traceln("NS_Green (Fixed): 30.0");
+}</EntryAction>
+				<FillColor/>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="State" ParentState="ROOT_NODE">
+			<Id>1762940290410</Id>
+			<Name><![CDATA[NS_Yellow]]></Name>
+			<X>1160</X>
+			<Y>1560</Y>
+			<Label>
+				<X>10</X>
+				<Y>10</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<Properties Width="100" Height="30">
+				<EntryAction>// NS Yellow - Code for On Entry
+// The traffic phase is already set by the transition leading into this state.
+traceln("NS_Yellow: Clearing intersection.");</EntryAction>
+				<FillColor/>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="State" ParentState="ROOT_NODE">
+			<Id>1762940296469</Id>
+			<Name><![CDATA[EW_Green]]></Name>
+			<X>1300</X>
+			<Y>1560</Y>
+			<Label>
+				<X>10</X>
+				<Y>10</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<Properties Width="100" Height="30">
+				<EntryAction>// Reset the phase timer for the transition condition
+lastPhaseChangeTime = time();
+
+if (isAdaptive) {
+    int qN = (stopLine != null) ? stopLine.queueSize() : 0;
+    int qS = (stopLine2 != null) ? stopLine2.queueSize() : 0;
+    int qE = (stopLine1 != null) ? stopLine1.queueSize() : 0;
+
+    smoothedNS = ALPHA * (qN + qS) + (1 - ALPHA) * smoothedNS;
+    smoothedEW = ALPHA * qE + (1 - ALPHA) * smoothedEW;
+
+    double total = smoothedNS + smoothedEW;
+    // Duration based on EW queue ratio
+    double gEW = (total &gt; 0) ? (smoothedEW / total) * (MIN_GREEN + MAX_GREEN) / 2 : MIN_GREEN;
+    
+    currentGreenDuration = Math.max(MIN_GREEN, Math.min(MAX_GREEN, gEW));
+    traceln("EW_Green (Adaptive): " + currentGreenDuration);
+} else {
+    currentGreenDuration = 30.0;
+    traceln("EW_Green (Fixed): 30.0");
+}</EntryAction>
+				<FillColor/>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="State" ParentState="ROOT_NODE">
+			<Id>1762940300509</Id>
+			<Name><![CDATA[EW_Yellow]]></Name>
+			<X>1450</X>
+			<Y>1560</Y>
+			<Label>
+				<X>10</X>
+				<Y>10</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<Properties Width="100" Height="30">
+				<EntryAction>// EW Yellow - Code for On Entry
+// The traffic phase is already set by the transition leading into this state.
+traceln("EW_Yellow: Clearing intersection for NS approach.");</EntryAction>
+				<FillColor/>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="Transition" ParentState="ROOT_NODE">
+			<Id>1762940585749</Id>
+			<Name><![CDATA[transition1]]></Name>
+			<X>1260</X>
+			<Y>1570</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<Points>
+				<Point>
+					<X>0</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>40</X>
+					<Y>0</Y>
+				</Point>
+			</Points>
+			<IconOffset>30.0</IconOffset>
+			<Properties Source="1762940290410" Target="1762940296469" Trigger="timeout">
+				<Timeout Class="CodeUnitValue">
+					<Code><![CDATA[YELLOW_TIME + ALL_RED]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Timeout>
+				<Condition>true</Condition>
+				<Rate Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="RateUnits">PER_SECOND</Unit>
+				</Rate>
+				<MessageType>Object</MessageType>
+				<DefaultTransition>true</DefaultTransition>
+				<FilterType>unconditionally</FilterType>
+				<EqualsExpression>"text"</EqualsExpression>
+				<SatisfiesExpression>true</SatisfiesExpression>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="Transition" ParentState="ROOT_NODE">
+			<Id>1762940593890</Id>
+			<Name><![CDATA[transition2]]></Name>
+			<X>1400</X>
+			<Y>1570</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<Points>
+				<Point>
+					<X>0</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>31</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>43</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>50</X>
+					<Y>0</Y>
+				</Point>
+			</Points>
+			<IconOffset>20.0</IconOffset>
+			<Properties Source="1762940296469" Target="1762940300509" Trigger="timeout">
+				<Action>traceln("Switching from EW_Green to EW_Yellow. Time: " + time());</Action>
+				<Timeout Class="CodeUnitValue">
+					<Code><![CDATA[currentGreenDuration]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Timeout>
+				<Condition>time() - lastPhaseChangeTime &gt;= currentGreenDuration</Condition>
+				<Rate Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="RateUnits">PER_SECOND</Unit>
+				</Rate>
+				<MessageType>Object</MessageType>
+				<DefaultTransition>true</DefaultTransition>
+				<FilterType>unconditionally</FilterType>
+				<EqualsExpression>"text"</EqualsExpression>
+				<SatisfiesExpression>true</SatisfiesExpression>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="Transition" ParentState="ROOT_NODE">
+			<Id>1762940679885</Id>
+			<Name><![CDATA[transition]]></Name>
+			<X>1100</X>
+			<Y>1570</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<Points>
+				<Point>
+					<X>0</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>40</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>60</X>
+					<Y>0</Y>
+				</Point>
+			</Points>
+			<IconOffset>20.0</IconOffset>
+			<Properties Source="1762940284410" Target="1762940290410" Trigger="timeout">
+				<Action>traceln("Switching from NS_Green to NS_Yellow. Time: "+time());
+</Action>
+				<Timeout Class="CodeUnitValue">
+					<Code><![CDATA[currentGreenDuration]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Timeout>
+				<Condition>time() - lastPhaseChangeTime &gt;= currentGreenDuration</Condition>
+				<Rate Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="RateUnits">PER_SECOND</Unit>
+				</Rate>
+				<MessageType>Object</MessageType>
+				<DefaultTransition>true</DefaultTransition>
+				<FilterType>unconditionally</FilterType>
+				<EqualsExpression>"text"</EqualsExpression>
+				<SatisfiesExpression>true</SatisfiesExpression>
+			</Properties>
+		</StatechartElement>
+		<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
+			<Id>1762948286884</Id>
+			<Name><![CDATA[statechart]]></Name>
+			<X>870</X>
+			<Y>1570</Y>
+			<Label>
+				<X>0</X>
+				<Y>-20</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<Points>
+				<Point>
+					<X>0</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>140</X>
+					<Y>0</Y>
+				</Point>
+			</Points>
+			<Properties Target="1762940284410"/>
+		</StatechartElement>
+		<StatechartElement Class="Transition" ParentState="ROOT_NODE">
+			<Id>1766344350884</Id>
+			<Name><![CDATA[transition3]]></Name>
+			<X>1450</X>
+			<Y>1580</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<Points>
+				<Point>
+					<X>0</X>
+					<Y>0</Y>
+				</Point>
+				<Point>
+					<X>-350</X>
+					<Y>0</Y>
+				</Point>
+			</Points>
+			<IconOffset>20.0</IconOffset>
+			<Properties Source="1762940300509" Target="1762940284410" Trigger="timeout">
+				<Timeout Class="CodeUnitValue">
+					<Code><![CDATA[YELLOW_TIME + ALL_RED]]></Code>
+					<Unit Class="TimeUnits">SECOND</Unit>
+				</Timeout>
+				<Condition>true</Condition>
+				<Rate Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="RateUnits">PER_SECOND</Unit>
+				</Rate>
+				<MessageType>Object</MessageType>
+				<DefaultTransition>true</DefaultTransition>
+				<FilterType>unconditionally</FilterType>
+				<EqualsExpression>"text"</EqualsExpression>
+				<SatisfiesExpression>true</SatisfiesExpression>
+			</Properties>
+		</StatechartElement>
+	</StatechartElements>
+	<Functions xmlns:al="http://anylogic.com"/>
+	<AgentLinks>
+		<AgentLink>
+			<Id>1761763353375</Id>
+			<Name><![CDATA[connections]]></Name>
+			<X>50</X>
+			<Y>-50</Y>
+			<Label>
+				<X>15</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>false</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>true</ShowLabel>
+			<HandleReceiveInConnections>false</HandleReceiveInConnections>
+			<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
+			<AgentLinkBidirectional>true</AgentLinkBidirectional>
+			<MessageType>Object</MessageType>
+			<StatechartReference>
+				<PackageName>road_traffic</PackageName>
+				<ClassName>Main</ClassName>
+				<ItemName>statechart</ItemName>
+			</StatechartReference>
+			<LineStyle>SOLID</LineStyle>
+			<LineWidth>1</LineWidth>
+			<LineColor>-16777216</LineColor>
+			<LineZOrder>UNDER_AGENTS</LineZOrder>
+			<LineArrow>NONE</LineArrow>
+			<LineArrowPosition>END</LineArrowPosition>
+		</AgentLink>
+	</AgentLinks>
+	<EmbeddedObjects xmlns:al="http://anylogic.com"/>
+	<Presentation>
+		<Level>
+			<Id>1761763353380</Id>
+			<Name><![CDATA[level]]></Name>
+			<X>0</X>
+			<Y>0</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>true</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+			<Z>0</Z>
+			<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+			<Presentation xmlns:al="http://anylogic.com"/>
+		</Level>
+		<Level>
+			<Id>1766738608249</Id>
+			<Name><![CDATA[level1]]></Name>
+			<X>0</X>
+			<Y>0</Y>
+			<Label>
+				<X>10</X>
+				<Y>0</Y>
+			</Label>
+			<PublicFlag>true</PublicFlag>
+			<PresentationFlag>true</PresentationFlag>
+			<ShowLabel>false</ShowLabel>
+			<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+			<Z>0</Z>
+			<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+		</Level>
+	</Presentation>
+</ActiveObjectClass>

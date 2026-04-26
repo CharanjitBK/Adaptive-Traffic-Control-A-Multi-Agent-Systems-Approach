@@ -13,10 +13,10 @@ Agents perceive the environment using localized queue sensors:
 stopLine.queueSize()
 ##### Internal State (Memory): 
 Exponential Moving Average (EMA) smooths incoming sensor data
-Prevents erratic decisions caused by stochastic vehicle arrivals
+prevents erratic decisions caused by stochastic vehicle arrivals
 ##### Reasoning:
 Agents compute the fair share of green time
-Based on relative demand between competing approaches
+based on relative demand between competing approaches
 ##### Decision Logic (Java)
 The agent calculates the green duration using:
 G_duration = max(G_min, min(G_max, (Q_smoothed_target / Q_total) * (G_min + G_max)/2))

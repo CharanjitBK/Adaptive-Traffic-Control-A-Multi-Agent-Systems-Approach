@@ -28,10 +28,10 @@ G_duration = max(G_min, min(G_max, (Q_smoothed_target / Q_total) * (G_min + G_ma
 ##### Intentions: Active states in the traffic signal statechart (e.g., NS_Green, EW_Yellow)
 #### Autonomy 
 Each intersection operates without a centralized controller
-Decisions are made solely from local perception
+and decisions are made solely from local perception
 #### Social Welfare: 
 Maximizes global throughput
-Balances fairness for minor approaches under asymmetric demand
+and balances fairness for minor approaches under asymmetric demand
 
 ### 3. Performance Metrics
 The simulation tracks the following Key Performance Indicators (KPIs):
